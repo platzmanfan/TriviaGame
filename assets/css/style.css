@@ -3,20 +3,40 @@ header{
 }
 #container{
     width:750px;
-    height: 1550px;
+    height: 1750px;
     text-align: center;
     margin:0 auto;
     border-style: dotted;
     background-color: aqua;
 }
+.trivia{
+    width:200px;
+    height: 140px;
+    float:left;
+}
+.kobe{
+    width:500px;
+    height: 250px;
+}
 .start{
     margin-top:300px;
     width:450px;
-    height: 100px;
+    height: 150px;
     background-color: pink;
     border-color:black;
     border-width: 2px;
     cursor: pointer;
+    font-size: 50px;
+}
+.done{
+    margin-top:150px;
+    width:450px;
+    height: 120px;
+    background-color: pink;
+    border-color:black;
+    border-width: 2px;
+    cursor: pointer;
+    font-size: 50px;
 }
 #group1,#group2,#group3,#group4,#group5,#group6,#group7,#group8{
     border-style: hidden;

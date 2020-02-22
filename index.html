@@ -8,12 +8,14 @@
         <script src="assets/javascript/app.js"></script>
      </head>
 <body>
-    <div id = "container">
+    <div id = "container" tabindex="0">
             <header> NBA TRIVIA !!!!!</header>
+            <img src="assets/images/kobe.jpg" class="kobe">
             <button class="start">
+                <img src="assets/images/nba-quiz.jpg" class="trivia">
                 START
             </button>
-            <p id ="time-remaining"></p><p id="counter"></p>
+            <p id ="time-remaining"></p>
             <form>
                      <fieldset id ="group1">
                 <p id="question1"></p>
@@ -72,13 +74,14 @@
                             <p id="answer31"></p>
                             <p id="answer32"></p>
                             </fieldset>
-                
-            <!-- <input type="radio" id="huey" name="drone" value="huey"
-            checked>
-     <label for="huey">Huey</label>
-     <input type="radio" id="huey" name="drone" value="huey"
-     checked>
-<label for="huey">helllo</label> -->
+                            <button class="done">
+                                
+                                DONE
+                            </button>
+                    <p id ="text"></p>
+                    <p id ="correct"></p>
+                    <p id ="incorrect"></p>
+                    <p id ="unanswered"></p>
                 
     </div>
 </body>

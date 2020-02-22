@@ -3,25 +3,37 @@ var textInput = $("#text");
 var interval;
 var rightAnswers = 0;
 var wrongAnswers = 0;
+var unansweredAnswers =0;
 var correctAnswers =[];
 var clock = false;
 var number = 200;
 
-// window.onload = function() {
-//     $(".start").on("click", function());
-//   };
 var decrementing = function(){
-    number--;
-    $("#time-remaining").html("<h1> TIME REMAINING:  " +number +"</h1>" )
     
+    $("#time-remaining").html("<h1> TIME REMAINING:  " +number +"</h1>" )
+    number--;
 }
 function start() {
     
     
-        clearInterval(interval)
-        interval = setInterval(decrementing, 1000);
-        // need to create if statement that if number comes to 0 to stop the page and give wrong answers
+    clearInterval(interval)
+    interval = setInterval(decrementing, 1000);
+    // need to create if statement that if number comes to 0 to stop the page and take unanswered
 }
+window.onload = function() {
+    $(".done").hide();
+  };
+  $(document).on("click touchend",".start",  function(){
+    
+    $(".start").hide();
+    $(".kobe").hide();
+    $(".done").show();
+    questions();
+    answers();
+    decrementing();
+    start();
+}); 
+
 var questions = function(){
     $("#question1").html("<h1>1. Who was the MVP of the season 2001/2002 in the NBA!? ");
     
@@ -41,7 +53,7 @@ var questions = function(){
 }
 var answers = function(){
     
-    $("#answer1").html("<input type='radio' id='huey' name='group1' value='huey'>Shaquille O'Neal");
+    $("#answer29").html("<input type='radio' id='huey' name='group1' value='huey'>Shaquille O'Neal");
     $("#answer2").html("<input type='radio' id='huey' name='group1' value='huey'>Jason Kidd");
     $("#answer3").html("<input type='radio' id='huey' name='group1' value='huey'>Tim Duncan");
     $("#answer4").html("<input type='radio' id='huey' name='group1' value='huey'>Dirk Nowitzki");
@@ -81,15 +93,82 @@ var answers = function(){
     $("#answer31").html("<input type='radio' id='huey' name='group8' value='huey'>Darko Milicic");
     $("#answer32").html("<input type='radio' id='huey' name='group8' value='huey'>Dwyane Wade");
 }
-$(document).on("click touchend",".start",  function(){
-    // alert("hello world"); should be deleted
-    $(".start").hide();
-    
-    questions();
-    answers();
-    decrementing();
-    start();
-}); 
 
+$(document).on("click touchend",".done",  function(){
+   
+    $("#text").html("<div id='text'> <h1> ALL DONE! </h1> </div>");
+}); 
+$(document).on("click", ".done" , function() {
+    $(this).remove();
+    $("#time-remaining").hide();
+    $("#text").html("<h1> ALL DONE! </h1>");
+    $("#correct").html("<h2> Correct Answers: " + rightAnswers + " </h2>");
+    $("#incorrect").html("<h2> Wrong Answers: " + wrongAnswers + " </h2>");
+    $("#unanswered").html("<h2> Unanswered Anaswers:" +unansweredAnswers + "</h2>");
+
+
+    $("#question1").hide();
+    $("#question2").hide();
+    $("#question3").hide();
+    $("#question4").hide();
+    $("#question5").hide();
+    $("#question6").hide();
+    $("#question7").hide();
+    $("#question8").hide();
+
+
+
+    $("#group1").remove();
+    $("#group2").remove();
+    $("#group3").remove();
+    $("#group4").remove();
+    $("#group5").remove();
+    $("#group6").remove();
+    $("#group7").remove();
+    $("#group8").remove();
+
+
+
+    // $("#answer1").hide();
+    // $("#answer2").hide();
+    // $("#answer3").hide();
+    // $("#answer4").hide();
+    // $("#answer5").hide();
+    // $("#answer6").hide();
+    // $("#answer7").hide();
+    // $("#answer8").hide();
+    // $("#answer9").hide();
+    // $("#answer10").hide();
+    // $("#answer11").hide();
+    // $("#answer12").hide();
+    // $("#answer13").hide();
+    // $("#answer14").hide();
+    // $("#answer15").hide();
+    // $("#answer16").hide();
+    // $("#answer17").hide();
+    // $("#answer18").hide();
+    // $("#answer19").hide();
+    // $("#answer20").hide();
+    // $("#answer21").hide();
+    // $("#answer22").hide();
+    // $("#answer23").hide();
+    // $("#answer24").hide();
+    // $("#answer25").hide();
+    // $("#answer26").hide();
+    // $("#answer27").hide();
+    // $("#answer28").hide();
+    // $("#answer29").hide();
+    // $("#answer30").hide();
+    // $("#answer31").hide();
+    // $("#answer32").hide();
+
+
+
+
+    $("#text").html("<h1> ALL DONE! </h1>");
+    $("#correct").html("<h2> Correct Answers:" +rightAnswers + "</h2>");
+    $("#incorrect").html("<h2> Wrong Answers:" +wrongAnswers + "</h2>");
+    $("#unanswered").html("<h2> Unanswered Anaswers:" +unansweredAnswers + "</h2>");
+});
 
 // "<input type='radio' id='huey' name='drone' value='huey' checked> What is it")
