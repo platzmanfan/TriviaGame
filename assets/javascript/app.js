@@ -1,25 +1,26 @@
 var text = $("#container");
 var textInput = $("#text");
-var interval = 200;
-
+var interval;
+var rightAnswers = 0;
+var wrongAnswers = 0;
+var correctAnswers =[];
 var clock = false;
-
-setTimeout(questions, 5000);
+var number = 200;
 
 // window.onload = function() {
 //     $(".start").on("click", function());
 //   };
-var timeRemaining = function(){
-    $("#time-remaining").html("<h1> TIME REMAINING: </h1>" + interval )
+var decrementing = function(){
+    number--;
+    $("#time-remaining").html("<h1> TIME REMAINING:  " +number +"</h1>" )
     
 }
 function start() {
     
-    if (!clock) {
-        interval = setInterval(count, 1000);
-        interval--;
-        clock = true;
-      }
+    
+        clearInterval(interval)
+        interval = setInterval(decrementing, 1000);
+        // need to create if statement that if number comes to 0 to stop the page and give wrong answers
 }
 var questions = function(){
     $("#question1").html("<h1>1. Who was the MVP of the season 2001/2002 in the NBA!? ");
@@ -86,7 +87,8 @@ $(document).on("click touchend",".start",  function(){
     
     questions();
     answers();
-    timeRemaining();
+    decrementing();
+    start();
 }); 
 
 
