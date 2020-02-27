@@ -4,25 +4,156 @@ var interval;
 var rightAnswers = 0;
 var wrongAnswers = 0;
 var unansweredAnswers =0;
-var correctAnswers =[];
+var temp=[];
+var value;
+var currentAnswer;
 var clock = false;
-var number = 200;
+var number = 140;
+var correctAnswer =[
+
+     "Tim Duncan",
+    "Wilt Chamberlain",
+    "Boston Celtics",
+    "Don Nelson",
+    "Derrick Rose",
+    "Golden State Warrirors",
+    "Ray Allen",
+    "Lebron James"
+
+]
+
+
 
 var decrementing = function(){
     
     $("#time-remaining").html("<h1> TIME REMAINING:  " +number +"</h1>" )
     number--;
-}
+    if (number < 5){
+      
+        $("#time-remaining").css( "color", "red")
+        $("#time-remaining").css( "font-size", "32px")
+    }
+     if  (number <= 0){
+            
+            
+            stop();
+            reset();
+            $("#text").html("<h1> Sorry your Time is UP!!! </h1>");
+    }
+};
+
 function start() {
     
     
     clearInterval(interval)
     interval = setInterval(decrementing, 1000);
-    // need to create if statement that if number comes to 0 to stop the page and take unanswered
+
+    
 }
+
+function stop() {
+	clock = false;
+	clearInterval(interval);
+}
+// for (var i =0;i < correctAnswer.length; i++){
+//     currentAnswer = correctAnswer[i];
+//     console.log(currentAnswer)}
 window.onload = function() {
     $(".done").hide();
-  };
+    
+
+
+$(document).on("click touched", "#huey", function(){
+    for (var i =0;i < correctAnswer.length; i++){
+             currentAnswer = correctAnswer[i];
+              
+              
+    
+     if ($('input[name="group1"]:checked').val() === currentAnswer){
+        rightAnswers++;
+        
+    }
+    else if ($('input[name="group1"]:checked').val() !== currentAnswer) {
+       wrongAnswers++;
+       
+    }
+
+    if ($('input[name="group2"]:checked').val() === currentAnswer){
+        rightAnswers++;
+        
+    }
+    else if ($('input[name="group2"]:checked').val() !== currentAnswer) {
+        wrongAnswers++;
+        
+     }
+     if ($('input[name="group3"]:checked').val() === currentAnswer){
+        rightAnswers++;
+        
+    }
+    else if ($('input[name="group3"]:checked').val() !== currentAnswer) {
+        wrongAnswers++;
+        
+     }
+     if ($('input[name="group4"]:checked').val() === currentAnswer){
+        rightAnswers++;
+        
+    }
+    else if ($('input[name="group4"]:checked').val() !== currentAnswer) {
+        wrongAnswers++;
+        
+     }
+     if ($('input[name="group5"]:checked').val() === currentAnswer){
+        rightAnswers++;
+        
+    }
+    else if ($('input[name="group5"]:checked').val() !== currentAnswer) {
+        wrongAnswers++;
+        
+     }
+     if ($('input[name="group6"]:checked').val() === currentAnswer){
+        rightAnswers++;
+        
+    }
+    else if ($('input[name="group6"]:checked').val() !== currentAnswer) {
+        wrongAnswers++;
+        
+     }
+     if ($('input[name="group7"]:checked').val() === currentAnswer){
+        rightAnswers++;
+        
+    }
+    else if ($('input[name="group7"]:checked').val() !== currentAnswer) {
+        wrongAnswers++;
+        
+     }
+     if ($('input[name="group8"]:checked').val() === currentAnswer){
+        rightAnswers++;
+        
+    }
+    else if ($('input[name="group8"]:checked').val() !== currentAnswer) {
+        wrongAnswers++;
+        
+     }
+     else if('input[id="huey"]:unchecked') {
+         unansweredAnswers++;
+     }
+         
+     
+}
+  
+///// it works for the correct one but for the wrong one it loop 8 times since it's in the for loop
+// i couldn't figure out a way how to do it without the for loop cos outside of it the if statements didn't work!
+// we should check at the end if the radio button is uncheced to incremen unanswered!
+// 
+
+    
+});
+
+
+
+
+
+  
   $(document).on("click touchend",".start",  function(){
     
     $(".start").hide();
@@ -32,7 +163,25 @@ window.onload = function() {
     answers();
     decrementing();
     start();
+   
 }); 
+
+$(document).on("click", ".done" , function() {
+    $(this).remove();
+    reset();
+    window.scrollTo(0,0);
+    $("#text").html("<h1> ALL DONE! </h1>");
+    $("#correct").html("<h2> Correct Answers:" +rightAnswers + "</h2>");
+    $("#incorrect").html("<h2> Wrong Answers:" +wrongAnswers + "</h2>");
+    $("#unanswered").html("<h2> Unanswered Anaswers:" +unansweredAnswers + "</h2>");
+});
+
+
+
+
+
+};
+
 
 var questions = function(){
     $("#question1").html("<h1>1. Who was the MVP of the season 2001/2002 in the NBA!? ");
@@ -52,61 +201,60 @@ var questions = function(){
     $("#question8").html("<h1>8.  Who was drafted first pick in 2004 NBA Draft!?");
 }
 var answers = function(){
+        
+    $("#answer1").html("<input type='radio' id='huey' name='group1' value='1'>Shaquille O'Neal");
+    $("#answer2").html("<input type='radio' id='huey' name='group1' value='Jason Kidd'>Jason Kidd");
+    $("#answer3").html("<input type='radio' id='huey' name='group1' value='Tim Duncan'>Tim Duncan");
+    $("#answer4").html("<input type='radio' id='huey' name='group1' value='Dirk Nowitzki'>Dirk Nowitzki");
+
+    $("#answer5").html("<input type='radio' id='huey' name='group2' value='Bill Russel'>Bill Russel");
+    $("#answer6").html("<input type='radio' id='huey' name='group2' value='Wilt Chamberlain'>Wilt Chamberlain");
+    $("#answer7").html("<input type='radio' id='huey' name='group2' value='Moses Malone'>Moses Malone");
+    $("#answer8").html("<input type='radio' id='huey' name='group2' value='Kareem Abdul-Jabbar'>Kareem Abdul-Jabbar");
+
+    $("#answer9").html("<input type='radio' id='huey' name='group3' value='Miami Heat'>Miami Heat");
+    $("#answer10").html("<input type='radio' id='huey' name='group3' value='Boston Celtics'>Boston Celtics");
+    $("#answer11").html("<input type='radio' id='huey' name='group3' value='Phoenix Suns'>Phoenix Suns");
+    $("#answer12").html("<input type='radio' id='huey' name='group3' value='Cleveland Cavaliers'>Cleveland Cavaliers");
+
+    $("#answer13").html("<input type='radio' id='huey' name='group4' value='Gregg Popovich'>Gregg Popovich");
+    $("#answer14").html("<input type='radio' id='huey' name='group4' value='Pat Riley'>Pat Riley");
+    $("#answer15").html("<input type='radio' id='huey' name='group4' value='Don Nelson'>Don Nelson");
+    $("#answer16").html("<input type='radio' id='huey' name='group4' value='Jerry Sloan'>Jerry Sloan");
     
-    $("#answer29").html("<input type='radio' id='huey' name='group1' value='huey'>Shaquille O'Neal");
-    $("#answer2").html("<input type='radio' id='huey' name='group1' value='huey'>Jason Kidd");
-    $("#answer3").html("<input type='radio' id='huey' name='group1' value='huey'>Tim Duncan");
-    $("#answer4").html("<input type='radio' id='huey' name='group1' value='huey'>Dirk Nowitzki");
+    $("#answer17").html("<input type='radio' id='huey' name='group5' value='Lebron James'>Lebron James");
+    $("#answer18").html("<input type='radio' id='huey' name='group5' value='Derrick Rose'>Derrick Rose");
+    $("#answer19").html("<input type='radio' id='huey' name='group5' value='Michael Jordan'>Michael Jordan");
+    $("#answer20").html("<input type='radio' id='huey' name='group5' value='Magic Johnson'>Magic Johnson");
 
-    $("#answer5").html("<input type='radio' id='huey' name='group2' value='huey'>Bill Russel");
-    $("#answer6").html("<input type='radio' id='huey' name='group2' value='huey'>Wilt Chamberlain");
-    $("#answer7").html("<input type='radio' id='huey' name='group2' value='huey'>Moses Malone");
-    $("#answer8").html("<input type='radio' id='huey' name='group2' value='huey'>Kareem Abdul-Jabbar");
+    $("#answer21").html("<input type='radio' id='huey' name='group6' value='Golden State Warriors'>Golden State Warriors");
+    $("#answer22").html("<input type='radio' id='huey' name='group6' value='San Antionio Spurs'>San Antonio Spurs");
+    $("#answer23").html("<input type='radio' id='huey' name='group6' value='Cleveland Cavaliers'>Cleveland Cavaliers");
+    $("#answer24").html("<input type='radio' id='huey' name='group6' value='Houston Rockets'>Houston Rockets");
 
-    $("#answer9").html("<input type='radio' id='huey' name='group3' value='huey'>Miami Heat");
-    $("#answer10").html("<input type='radio' id='huey' name='group3' value='huey'>Boston Celtics");
-    $("#answer11").html("<input type='radio' id='huey' name='group3' value='huey'>Phoenix Suns");
-    $("#answer12").html("<input type='radio' id='huey' name='group3' value='huey'>Cleveland Cavaliers");
+    $("#answer25").html("<input type='radio' id='huey' name='group7' value='Ray Allen'>Ray Allen");
+    $("#answer26").html("<input type='radio' id='huey' name='group7' value='Stephen Curry'>Stephen Curry");
+    $("#answer27").html("<input type='radio' id='huey' name='group7' value='Reggie Miller'>Reggie Miller");
+    $("#answer28").html("<input type='radio' id='huey' name='group7' value='Kyle Korver'>Kyle Korver");
 
-    $("#answer13").html("<input type='radio' id='huey' name='group4' value='huey'>Gregg Popovich");
-    $("#answer14").html("<input type='radio' id='huey' name='group4' value='huey'>Pat Riley");
-    $("#answer15").html("<input type='radio' id='huey' name='group4' value='huey'>Don Nelson");
-    $("#answer16").html("<input type='radio' id='huey' name='group4' value='huey'>Jerry Sloan");
-    
-    $("#answer17").html("<input type='radio' id='huey' name='group5' value='huey'>Lebron James");
-    $("#answer18").html("<input type='radio' id='huey' name='group5' value='huey'>Derrick Rose");
-    $("#answer19").html("<input type='radio' id='huey' name='group5' value='huey'>Michael Jordan");
-    $("#answer20").html("<input type='radio' id='huey' name='group5' value='huey'>Magic Johnson");
-
-    $("#answer21").html("<input type='radio' id='huey' name='group6' value='huey'>Golden State Warriors");
-    $("#answer22").html("<input type='radio' id='huey' name='group6' value='huey'>San Antonio Spurs");
-    $("#answer23").html("<input type='radio' id='huey' name='group6' value='huey'>Cleveland Cavaliers");
-    $("#answer24").html("<input type='radio' id='huey' name='group6' value='huey'>Houston Rockets");
-
-    $("#answer25").html("<input type='radio' id='huey' name='group7' value='huey'>Ray Allen");
-    $("#answer26").html("<input type='radio' id='huey' name='group7' value='huey'>Stephen Curry");
-    $("#answer27").html("<input type='radio' id='huey' name='group7' value='huey'>Reggie Miller");
-    $("#answer28").html("<input type='radio' id='huey' name='group7' value='huey'>Kyle Korver");
-
-    $("#answer29").html("<input type='radio' id='huey' name='group8' value='huey'>Lebron James");
-    $("#answer30").html("<input type='radio' id='huey' name='group8' value='huey'>Carmelo Anthony");
-    $("#answer31").html("<input type='radio' id='huey' name='group8' value='huey'>Darko Milicic");
-    $("#answer32").html("<input type='radio' id='huey' name='group8' value='huey'>Dwyane Wade");
+    $("#answer29").html("<input type='radio' id='huey' name='group8' value='Lebron James'>Lebron James");
+    $("#answer30").html("<input type='radio' id='huey' name='group8' value='Carmelo Anthony'>Carmelo Anthony");
+    $("#answer31").html("<input type='radio' id='huey' name='group8' value='Darko Milicic'>Darko Milicic");
+    $("#answer32").html("<input type='radio' id='huey' name='group8' value='Dwyane Wade'>Dwyane Wade");
+    // var temp =$("#huey");
+    // return (temp.attr("checked") != "undefined" && temp.attr("checked") == "checked");
+  
 }
 
-$(document).on("click touchend",".done",  function(){
    
-    $("#text").html("<div id='text'> <h1> ALL DONE! </h1> </div>");
-}); 
-$(document).on("click", ".done" , function() {
-    $(this).remove();
+  
+var reset = function(){
+    
     $("#time-remaining").hide();
-    $("#text").html("<h1> ALL DONE! </h1>");
     $("#correct").html("<h2> Correct Answers: " + rightAnswers + " </h2>");
     $("#incorrect").html("<h2> Wrong Answers: " + wrongAnswers + " </h2>");
     $("#unanswered").html("<h2> Unanswered Anaswers:" +unansweredAnswers + "</h2>");
-
-
+    window.scrollTo(0,0);
     $("#question1").hide();
     $("#question2").hide();
     $("#question3").hide();
@@ -116,59 +264,16 @@ $(document).on("click", ".done" , function() {
     $("#question7").hide();
     $("#question8").hide();
 
+    $(".done").hide();
+  
+    $("#group1").hide();
+    $("#group2").hide();
+    $("#group3").hide();
+    $("#group4").hide();
+    $("#group5").hide();
+    $("#group6").hide();
+    $("#group7").hide();
+    $("#group8").hide();
 
+}
 
-    $("#group1").remove();
-    $("#group2").remove();
-    $("#group3").remove();
-    $("#group4").remove();
-    $("#group5").remove();
-    $("#group6").remove();
-    $("#group7").remove();
-    $("#group8").remove();
-
-
-
-    // $("#answer1").hide();
-    // $("#answer2").hide();
-    // $("#answer3").hide();
-    // $("#answer4").hide();
-    // $("#answer5").hide();
-    // $("#answer6").hide();
-    // $("#answer7").hide();
-    // $("#answer8").hide();
-    // $("#answer9").hide();
-    // $("#answer10").hide();
-    // $("#answer11").hide();
-    // $("#answer12").hide();
-    // $("#answer13").hide();
-    // $("#answer14").hide();
-    // $("#answer15").hide();
-    // $("#answer16").hide();
-    // $("#answer17").hide();
-    // $("#answer18").hide();
-    // $("#answer19").hide();
-    // $("#answer20").hide();
-    // $("#answer21").hide();
-    // $("#answer22").hide();
-    // $("#answer23").hide();
-    // $("#answer24").hide();
-    // $("#answer25").hide();
-    // $("#answer26").hide();
-    // $("#answer27").hide();
-    // $("#answer28").hide();
-    // $("#answer29").hide();
-    // $("#answer30").hide();
-    // $("#answer31").hide();
-    // $("#answer32").hide();
-
-
-
-
-    $("#text").html("<h1> ALL DONE! </h1>");
-    $("#correct").html("<h2> Correct Answers:" +rightAnswers + "</h2>");
-    $("#incorrect").html("<h2> Wrong Answers:" +wrongAnswers + "</h2>");
-    $("#unanswered").html("<h2> Unanswered Anaswers:" +unansweredAnswers + "</h2>");
-});
-
-// "<input type='radio' id='huey' name='drone' value='huey' checked> What is it")
